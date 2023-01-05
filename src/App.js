@@ -1,8 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  return <div className="game-container"></div>;
+  return (
+    <main className="game-container">
+      <div className="game-board"></div>
+    </main>
+  );
 }
 
 export default App;

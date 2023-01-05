@@ -1,0 +1,18 @@
+.game-container {
+  position: absolute;
+  width: 360px;
+  height: 379px;
+  left: 76px;
+  top: 69px;
+  background: #0B2434;
+}
+
+.game-board {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  left: 20px;
+  top: 30px;
+  background: #F5F5F5;
+  border-radius: 10px;
+  }

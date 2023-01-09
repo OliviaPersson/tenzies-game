@@ -21,6 +21,18 @@
   flex-direction: column;
 }
 
+.title {
+  margin: 0px;
+
+}
+
+.instructions {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 0px;
+  text-align: center;
+}
+
 .dice-container {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
@@ -39,7 +51,7 @@ button {
   line-height: 19px;
   color: #FFFFFF;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 20px;
   font-family: 'Karla', sans-serif;
 }
 

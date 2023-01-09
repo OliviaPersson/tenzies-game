@@ -1,10 +1,20 @@
 import React from "react";
 import Dice from "./components/Dice";
+import Confetti from "react-confetti";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 function App() {
   const [dice, setDice] = React.useState(allNewDice());
+  const [tenzies, setTenzies] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log(dice[0].value);
+    if (dice.every((die) => die.value === dice[0].value && die.isHeld)) {
+      setTenzies(true);
+      console.log("Completed");
+    }
+  }, [dice]);
 
   function allNewDice() {
     const newDice = [];
@@ -19,16 +29,25 @@ function App() {
   }
 
   function handleRollDice() {
-    setDice((preDice) =>
-      preDice.map((dice) =>
-        !dice.isHeld
-          ? {
-              ...dice,
-              value: Math.ceil(Math.random() * 6),
-            }
-          : dice
-      )
-    );
+    if (tenzies) {
+      newGame();
+    } else {
+      setDice((preDice) =>
+        preDice.map((dice) =>
+          !dice.isHeld
+            ? {
+                ...dice,
+                value: Math.ceil(Math.random() * 6),
+              }
+            : dice
+        )
+      );
+    }
+  }
+
+  function newGame() {
+    setTenzies(false);
+    setDice(allNewDice());
   }
 
   function holdDice(id) {
@@ -46,6 +65,7 @@ function App() {
 
   return (
     <main className="game-container">
+      {tenzies && <Confetti width={360} />}
       <div className="game-board">
         <h1 className="title">Tenzies</h1>
         <p className="instructions">
@@ -63,7 +83,9 @@ function App() {
             />
           ))}
         </div>
-        <button onClick={handleRollDice}>Roll</button>
+        <button onClick={handleRollDice}>
+          {tenzies ? "New Game" : "Roll"}
+        </button>
       </div>
     </main>
   );

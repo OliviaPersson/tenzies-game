@@ -1,7 +1,16 @@
 import "./Dice.css";
 
-function Dice() {
-  return <h1 className="dice">1</h1>;
+function Dice({ value, isHeld, id, holdDice }) {
+  return (
+    <h1
+      className={isHeld ? "green" : ""}
+      onClick={() => {
+        holdDice(id);
+      }}
+    >
+      {value}
+    </h1>
+  );
 }
 
 export default Dice;
